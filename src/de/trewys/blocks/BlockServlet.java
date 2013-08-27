@@ -20,6 +20,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import de.trewys.blocks.context.BlockContext;
 import de.trewys.blocks.writer.BlockWriter;
 import de.trewys.blocks.writer.ValidationBlockWriter;
+import de.trewys.blocks.writer.WriterWrapper;
 
 
 public class BlockServlet implements Servlet {
@@ -51,7 +52,7 @@ public class BlockServlet implements Servlet {
 		
 		HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 		
-		Writer writer = servletResponse.getWriter();
+		Writer writer = new WriterWrapper(servletResponse);
 		BlockWriter blockWriter = null;
 		if (!isDebug)
 			blockWriter = new BlockWriter(writer);
